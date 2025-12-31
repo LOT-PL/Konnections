@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Konnections</title>
+<link rel="stylesheet" type="text/css" href="main.css">
+<script>
+function update() {
+    var chromebar = {
+        "appId": "xyz.lotpl.konnections",
+        "topNavBar": {
+            "template": "title",
+            "title": "Konnections",
+            "buttons": [
+                { "id": "KPP_MORE", "state": "enabled", "handling": "system" },
+                { "id": "KPP_CLOSE", "state": "enabled", "handling": "system" }
+            ]
+        },
+        "systemMenu": {
+            "clientParams": {
+                "profile": {
+                    "name": "default",
+                    "items": [
+                        { "id": "KONNECTIONS_RELOAD", "state": "enabled", "handling": "notifyApp", "label": "Reload", "position": 0 }
+                    ],
+                    "selectionMode": "none",
+                    "closeOnUse": true
+                }
+            }
+        }
+    };
+    window.kindle.messaging.sendMessage("com.lab126.chromebar", "configureChrome", chromebar);
+}
+window.kindle.appmgr.ongo = function(ctx) {
+    update();
+    window.kindle.messaging.receiveMessage("systemMenuItemSelected", function(type, id) {
+        if (id === "KONNECTIONS_RELOAD") window.location.reload();
+    });
+};
+</script>
+</head>
+<body>
+<div id="app">
+    <h1>Konnections</h1>
+    <p class="subtitle">Offline Puzzle Game</p>
+
+    <div id="grid-container">
+        <div id="grid"></div>
+    </div>
+
+    <div id="categories-found"></div>
+
+    <div id="key">
+        <div class="key-item">
+            <div class="tile wrong"></div>
+            <span>Wrong</span>
+        </div>
+        <div class="key-item">
+            <div class="tile correct-pattern"></div>
+            <span>Correct</span>
+        </div>
+    </div>
+
+    <div id="controls">
+        <button class="control-btn" id="newPuzzleBtn">New Puzzle</button>
+        <button class="control-btn" id="shuffleBtn">Shuffle</button>
+        <button class="control-btn" id="statsBtn">Stats</button>
+        <button class="control-btn" id="creditsBtn">Credits</button>
+    </div>
+
+    <p class="version">Version 1.0.0</p>
+
+    <div id="message-screen" class="hidden">
+        <div id="message-overlay">
+            <h2 id="message-title"></h2>
+            <button class="control-btn" id="play-again-btn">Play Again</button>
+        </div>
+    </div>
+
+    <div id="stats-screen" class="hidden">
+        <div id="stats-overlay">
+            <h2>Statistics</h2>
+            <p id="stats-text"></p>
+            <button class="control-btn" id="close-stats-btn">Close</button>
+        </div>
+    </div>
+
+    <div id="credits-screen" class="hidden">
+        <div id="credits-overlay">
+            <h2>Credits</h2>
+            <p>LOT - Creator</p>
+            <button class="control-btn" id="close-credits-btn">Close</button>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="main.js"></script>
+</body>
+</html>
