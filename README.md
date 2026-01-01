@@ -20,3 +20,16 @@
 - New game if you dont like the current one
 
 <img width="466" height="416" alt="image" src="https://github.com/user-attachments/assets/04ca0259-f543-49a3-b32e-163b65878c65" />
+
+## Every Category currently in Konnections
+- Fruits
+- Animals
+- Colors
+- Vehicles
+- Airlines
+- Countries
+- Trains
+- Cities
+- Sports
+- Foods
+- Programming Languages
